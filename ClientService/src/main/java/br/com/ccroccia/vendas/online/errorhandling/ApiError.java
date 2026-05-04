@@ -59,7 +59,7 @@ public class ApiError {
 		if (subError == null) {
 			subErrors = new ArrayList<>();
 		}
-		subErrors.add(SubError);
+		subErrors.add(subError);
 	}
 	
 	private void addValidationError(String object, String field, Object rejectedValue,
@@ -79,6 +79,10 @@ public class ApiError {
 				fieldError.getDefaultMessage()
 				);
 	}
+	
+    public void addValidationErrors(List<FieldError> fieldErrors) {
+        fieldErrors.forEach(this::addValidationError);
+    }
 	
 	public void addValidationError(ObjectError objectError) {
 		this.addValidationError(
