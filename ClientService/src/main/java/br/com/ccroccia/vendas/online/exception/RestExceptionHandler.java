@@ -21,12 +21,13 @@ import br.com.ccroccia.vendas.online.errorhandling.ApiError;
 import lombok.extern.slf4j.Slf4j;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@ControllerAdvice
-@Slf4j
+@ControllerAdvice // Annotation that make used for all controllers application
+@Slf4j // generate a logger
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	/**
-     * Handle MissingServletRequestParameterException. Triggered when a 'required' request parameter is missing.
+     * Handle MissingServletRequestParameterException. 
+     * Triggered when a 'required' request parameter is missing.
      *
      * @param ex      MissingServletRequestParameterException
      * @param headers HttpHeaders
@@ -47,7 +48,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     /**
-     * Handle HttpMediaTypeNotSupportedException. This one triggers when JSON is invalid as well.
+     * Handle HttpMediaTypeNotSupportedException. 
+     * This one triggers when JSON is invalid as well.
      *
      * @param ex      HttpMediaTypeNotSupportedException
      * @param headers HttpHeaders
@@ -71,7 +73,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     /**
-     * Handle MethodArgumentNotValidException. Triggered when an object fails @Valid validation.
+     * Handle MethodArgumentNotValidException. 
+     * Triggered when an object fails @Valid validation.
      *
      * @param ex      the MethodArgumentNotValidException that is thrown when @Valid validation fails
      * @param headers HttpHeaders
@@ -95,7 +98,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 
 	/**
-     * Handles jakarta.validation.ConstraintViolationException. Thrown when @Validated fails.
+     * Handles jakarta.validation.ConstraintViolationException. 
+     * Thrown when @Validated fails.
      *
      * @param ex the ConstraintViolationException
      * @return the ApiError object
@@ -115,6 +119,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      * @param ex the EntityNotFoundException
      * @return the ApiError object
      */
+    
+    //When entity is not found
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
         ApiError apiError = new ApiError(HttpStatus.NOT_FOUND);
@@ -122,6 +128,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
     
+    //For application rules
     @ExceptionHandler(BadRequestException.class)
     protected ResponseEntity<Object> handleBadRequest(BadRequestException ex) {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST);
@@ -129,6 +136,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
     
+    // when there are more then one register
     @ExceptionHandler(DuplicateKeyException.class)
     protected ResponseEntity<Object> handleDuplicateKeyException(DuplicateKeyException ex) {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST);
