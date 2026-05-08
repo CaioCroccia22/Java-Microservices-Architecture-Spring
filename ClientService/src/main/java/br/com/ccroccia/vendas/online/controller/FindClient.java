@@ -19,13 +19,23 @@ public class FindClient {
 		this.clientRepository = clientRepository;
 	}
 	
-	public Page<Client> find(Pageable pageable){
+	public Page<Client> Find(Pageable pageable){
 		return clientRepository.findAll(pageable);
 	}
 	
 	public Client findById(String id) {
 		return clientRepository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException(Client.class, id));
+	}
+	
+	public Boolean isActive(String id) {
+		return clientRepository.existsById(id);
+		
+	}
+	
+	public Client findByCpf(Long cpf) {
+		return clientRepository.findByCpf(cpf)
+				.orElseThrow(() -> new EntityNotFoundException(Client.class, String.valueOf(cpf)));
 	}
 	
 	

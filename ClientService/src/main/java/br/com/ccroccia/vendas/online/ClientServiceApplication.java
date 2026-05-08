@@ -1,4 +1,4 @@
-package br.com.ccroccia.vendas.online.ClientService;
+package br.com.ccroccia.vendas.online;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

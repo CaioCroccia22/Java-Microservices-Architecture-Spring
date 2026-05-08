@@ -1,15 +1,11 @@
 server:
   port: 8081
-  wait-time-in-ms-when-sync-empty: 3000
 
 spring:
-  spring:
-    profiles:
-      active: native
+  mongodb:
+    uri: "mongodb://admin:admin@127.0.0.1:27017/client?authSource=admin"
   data:
-      mongodb:
-        uri: mongodb://admin:admin@127.0.0.1:27017/marketplace?authSource=admin&retryWrites=true&w=majority
-        database: client
-        auto-index-creation: true
+    mongodb:
+      auto-index-creation: true
 
 application-version: 1.0
