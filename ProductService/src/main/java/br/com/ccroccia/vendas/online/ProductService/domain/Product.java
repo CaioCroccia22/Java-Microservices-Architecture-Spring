@@ -4,7 +4,6 @@ package br.com.ccroccia.vendas.online.ProductService.domain;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Builder; //implement build desing pattern
 import lombok.Getter;
@@ -17,7 +16,7 @@ import org.springframework.data.annotation.Id;
 @Getter
 @Setter
 @Schema(name = "Products", description = "Products")
-public class Products {
+public class Product {
 
     @Id
     @NotNull
@@ -43,7 +42,7 @@ public class Products {
     private final float price;
 
 
-    public Products(int id, String name, String type, float price){
+    public Product(int id, String name, String type, float price){
         this.id = id;
         this.name = name;
         this.type = type;
