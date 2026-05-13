@@ -12,7 +12,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 @Builder
-@NoArgsConstructor(force = true)
 @Getter
 @Setter
 @Schema(name = "Products", description = "Products")

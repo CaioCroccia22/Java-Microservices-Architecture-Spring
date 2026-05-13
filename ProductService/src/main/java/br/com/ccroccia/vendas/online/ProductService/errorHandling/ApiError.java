@@ -9,6 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /*
@@ -24,7 +25,7 @@ public record ApiError(
         String error,
         String message,
         String path,
-        Instant timestamp,
+        LocalDateTime timestamp,
         List<FieldError> errors
 ) {
   public record FieldError(String field, String rejectedValue, String reason) {}

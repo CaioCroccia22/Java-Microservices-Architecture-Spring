@@ -7,6 +7,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.OptimisticLockingFailureException;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.Optional;
+
+
 
 /**
  * In this Layer I will throw the Exception to GlobalExceptionHandler
@@ -26,8 +29,15 @@ public class ProductService {
         try {
             return productRepositoy.save(p);
         } catch(DataAccessException ex ){
-            throw new EntityCreationException("Error to create product");
+            throw new EntityCreationException("Error to create product: " + p.toString());
         }
 
+    }
+
+    public Optional<Product> findById(String id){
+        if(id.isEmpty() || id.isBlank()){
+            throw new IllegalArgumentException("Id is empty");
+        }
+            return productRepositoy.findById(id);
     }
 }
