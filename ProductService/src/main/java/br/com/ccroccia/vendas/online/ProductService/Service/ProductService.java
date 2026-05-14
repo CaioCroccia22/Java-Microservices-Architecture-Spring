@@ -5,6 +5,7 @@ import br.com.ccroccia.vendas.online.ProductService.domain.Product;
 import br.com.ccroccia.vendas.online.ProductService.repositoy.IProductRepositoy;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.Optional;
@@ -15,7 +16,7 @@ import java.util.Optional;
  * In this Layer I will throw the Exception to GlobalExceptionHandler
  * Service -> Throw exception -> GlobalExceptionHadler translate to API error
  * */
-
+@Service
 public class ProductService {
     private final IProductRepositoy productRepositoy;
 
