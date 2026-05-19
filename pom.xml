@@ -15,6 +15,7 @@
 		<module>ConfigService</module>
 		<module>ClientService</module>
 		<module>ProductService</module>
+		<module>filterRequestService</module>
 		<module>SellService</module>
 	</modules>
 

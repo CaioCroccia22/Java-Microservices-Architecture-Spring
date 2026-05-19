@@ -1,4 +1,4 @@
-package configuration;
+package br.com.ccroccia.vendas.online.filterRequestService.configuration;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import br.com.ccroccia.vendas.online.filterRequestService.Service.TokenService;
 
 import java.io.IOException;
 
@@ -20,6 +21,8 @@ import java.io.IOException;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
+
+    TokenService tokenService;
 
     // This Method is executed for all system requests
     @Override
@@ -47,6 +50,13 @@ public class JwtFilter extends OncePerRequestFilter {
     if(authHeader != null && authHeader.startsWith("Bearer ")){
         //get token
         String token = authHeader.replace("Bearer ", "");
+
+        try {
+            tokenService.createToken(token);
+        }catch(Exception e){
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().println("Token inválido");
+        }
     }
 
 
